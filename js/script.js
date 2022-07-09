@@ -11,7 +11,9 @@ var burger = document.querySelector('.burger'),
     formButton = document.querySelector('.first-form__button'),
     sliderButton = document.querySelector('.slider__button'),
     sliderButtonLeft = document.querySelector('.slider__button-left'),
-    sliderButtonRight = document.querySelector('.slider__button-right');
+    sliderButtonRight = document.querySelector('.slider__button-right'),
+    video = document.querySelector('.video'),
+    videoFile = document.querySelector('video');
 window.addEventListener('load', function () {
   if (sliderButton) {
     var goSlide = function goSlide(e) {
@@ -42,6 +44,17 @@ window.addEventListener('load', function () {
     });
 
     sliderButton.addEventListener('click', goSlide);
+  }
+
+  if (video) {
+    var toggleVideo = function toggleVideo(e) {
+      if (e.target.closest('.video')) {
+        video.classList.toggle('active');
+        videoFile.setAttribute('controls', true);
+      }
+    };
+
+    video.addEventListener('click', toggleVideo);
   } // body.addEventListener('click', clickBody)
   // function clickBody() {
   // 	alert("Click Body") // Для проверки вызова функции кликом
