@@ -8,30 +8,50 @@ var burger = document.querySelector('.burger'),
     popupBody = document.querySelector('.popup__body'),
     select = document.querySelector('.select'),
     city = document.querySelector('.select__city'),
-    formButton = document.querySelector('.first-form__button'); // sliderButton = document.querySelector('.slider__button'),
-// sliderButtonLeft = document.querySelector('.slider__button-left'),
-// sliderButtonRight = document.querySelector('.slider__button-right');
-
+    formButton = document.querySelector('.first-form__button'),
+    sliderButton = document.querySelector('.slider__button'),
+    sliderButtonLeft = document.querySelector('.slider__button-left'),
+    sliderButtonRight = document.querySelector('.slider__button-right');
 window.addEventListener('load', function () {
-  var swiper = new Swiper('.swiper', {
-    loop: true,
-    // centeredSlides: true,
-    slideToClickedSlide: true,
-    slidesPerView: 2 // autoplay: {
-    // 	delay: 4000,
-    // 	stopOnLastSlide: false,
-    // 	disableOnIteraction: false,
-    // }
-    // 		swiper.on( событие , обработчик )	
-    // Добавить обработчик событий
-    // swiper.onAny( обработчик )	
-    // Добавить прослушиватель событий, который будет запускаться для всех событий
+  if (sliderButton) {
+    var goSlide = function goSlide(e) {
+      // alert('Click Button')
+      if (e.target.closest('.slider__button-left')) {
+        _swiper.slidePrev(500, false);
+      }
 
-  });
+      if (e.target.closest('.slider__button-right')) {
+        _swiper.slideNext(500, false);
+      }
+    };
+
+    var _swiper = new Swiper('.swiper', {
+      loop: true,
+      // centeredSlides: true,
+      slideToClickedSlide: true,
+      slidesPerView: 2 // autoplay: {
+      // 	delay: 4000,
+      // 	stopOnLastSlide: false,
+      // 	disableOnIteraction: false,
+      // }
+      // 		swiper.on( событие , обработчик )	
+      // Добавить обработчик событий
+      // swiper.onAny( обработчик )	
+      // Добавить прослушиватель событий, который будет запускаться для всех событий
+
+    });
+
+    sliderButton.addEventListener('click', goSlide);
+  } // body.addEventListener('click', clickBody)
+  // function clickBody() {
+  // 	alert("Click Body") // Для проверки вызова функции кликом
+  // }
+
+
   body.addEventListener('click', toggle);
 
   function toggle(e) {
-    // alert("Click") // Для проверки вызова функции кликом
+    // alert("Click Body") // Для проверки вызова функции кликом
     if (e.target.closest('.burger')) {
       burger.classList.toggle('active');
       menu.classList.toggle('active');
@@ -54,6 +74,14 @@ window.addEventListener('load', function () {
           body.classList.remove('lock');
         }
       });
+    }
+
+    if (e.target.closest('.select')) {
+      select.classList.toggle('active');
+    }
+
+    if (!e.target.closest('.select')) {
+      select.classList.remove('active');
     }
 
     if (e.target.closest('.slider__button-left')) {
